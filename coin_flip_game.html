@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>coin flip game</title>
+  </head>
+
+  <body>
+
+    <p> try to guess the result and then flip the coin</p>
+
+    <button onclick="guess = 'heads';">heads</button>
+    <button onclick="guess = 'tails';">tails</button>
+    <br><br>
+    <button onclick="displayResult();">flip coin</button>
+    <br><br>
+    <button onclick="resetScore();">reset score</button>
+
+    <script>
+
+       const score = JSON.parse(localStorage.getItem('score')) || 
+      {
+        wins: 0,
+        losses: 0
+      };
+
+      let guess = '';
+
+      function flipCoin()
+      {
+        let actualSideOfCoin = '';
+        let temp = Math.random();
+
+        (temp < 0.5) ? actualSideOfCoin = 'heads' : actualSideOfCoin = 'tails';
+        //it would be better actualSideOfCoin = (temp < 0.5) ? 'heads' : 'tails';
+
+        return actualSideOfCoin;
+      }
+
+      function generateResult()
+      {
+        const actualSideOfCoin = flipCoin();
+
+        // this is not good practice (actualSideOfCoin === guess) ? result = `you win ! the coin was ${actualSideOfCoin}` : result = `you lose ! the coin was ${actualSideOfCoin}`;
+        // result = (actualSideOfCoin === guess) ? `you win ! the coin was ${actualSideOfCoin}` : `you lose ! the coin was ${actualSideOfCoin}`;
+
+        let result = '';
+
+        if(actualSideOfCoin === guess)
+        {
+          result = `you win ! the coin was ${actualSideOfCoin}`;
+          score.wins++;
+        }
+        else if(actualSideOfCoin !== guess)
+        {
+          result = `you lose ! the coin was ${actualSideOfCoin}`;
+          score.losses++;
+        }
+
+        localStorage.setItem('score', JSON.stringify(score));
+
+        return result;
+      }
+
+      function displayResult()
+      {
+        let result = generateResult();
+
+        alert(`${result}. \nWins: ${score.wins}, Losses: ${score.losses}`);
+      }
+
+      function resetScore()
+      {
+        score.wins = 0;
+        score.losses = 0;
+
+        localStorage.removeItem('score');
+      }
+
+    </script>
+
+  </body>
+</html>

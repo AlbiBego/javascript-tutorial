@@ -1,0 +1,78 @@
+<!-- makina llogarites me vetem tre numra -->
+
+<!DOCTYPE html>
+<html>
+
+  <head>
+
+    <title> makina llogaritese </title>
+
+  </head>
+
+  <body>
+
+    <p class="calculator-display">calculator screen</p>
+
+    <button style="
+    margin-left: 85px;
+    width: 22px;
+    "
+    onclick="resetCalculation();">C</button>
+
+    <br><br>
+
+    <button style="
+      margin-left: 85px;
+      width: 22px;
+      " 
+      onclick="add('-');">-</button>
+
+    <br><br>
+
+    <button  style="
+    margin-left: 85px;
+    width: 22px;
+    " 
+    onclick=" add('+');">+</button>
+
+    <br><br>
+
+    <button onclick="add('1');">1</button>
+    <button onclick="add('2');">2</button>
+    <button onclick="add('3');">3</button>
+
+    <button onclick="calculate();">=</button>
+
+    <script>
+
+      const calculatorDisplay = document.querySelector('.calculator-display');
+      let calculation = localStorage.getItem('calculation') || '';
+
+      function add(str)
+      {
+        calculation += str;
+        calculatorDisplay.innerHTML = calculation;
+        console.log(calculation);
+      }
+
+      function calculate()
+      {
+        calculation = eval(calculation);
+        calculatorDisplay.innerHTML = String(calculation);
+
+        console.log(calculation);
+        localStorage.setItem('calculation', calculation.toString());
+      }
+
+      function resetCalculation()
+      {
+        calculation = '';
+        calculatorDisplay.innerHTML = 'calculator screen';
+        localStorage.removeItem('calculation');
+      }
+
+    </script>
+
+  </body>
+
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <title> exercise with variables </title>
+
+</head>
+
+<body>
+
+  <p>Cart Quantity</p>
+
+  <br>
+
+  <button onclick="showQuantity();">Show quantity</button><br><br>
+
+  <button onclick="addQuantity(1);">Add to cart</button>
+  <button onclick="addQuantity(2);">+2</button>
+  <button onclick="addQuantity(3);">+3</button><br><br>
+
+  <button onclick="removeQuantity(1);">Remove from cart</button>
+  <button onclick="removeQuantity(2);">-2</button>
+  <button onclick="removeQuantity(3);">-3</button><br><br>
+
+  <button onclick="resetQuantity();">reset quantity</button>
+
+  <p class="cart-quantity"></p>
+
+  <script>
+
+    const quantityElement = document.querySelector('.cart-quantity');
+    let quantity = Number(localStorage.getItem('quantity')) || 0;
+
+    quantityElement.innerHTML = `cart quantity is ${quantity}`;
+
+    function addQuantity(quantityToBeAdded)
+    {
+      if(quantity + quantityToBeAdded > 10)
+      {
+        console.log(`You can not add ${quantityToBeAdded}. Cart is full !`);
+      }
+      else
+      {
+        quantity += quantityToBeAdded;
+        localStorage.setItem('quantity', String(quantity));
+        showQuantity();
+        displayQuantity(quantity);
+      }
+    }
+
+    function removeQuantity(quantityToBeRemoved)
+    {
+      if(quantity - quantityToBeRemoved < 0)
+      {
+        console.log(`You can not remove ${quantityToBeRemoved}. Cart  does not have that much items !`);
+      }
+      else
+      {
+        quantity -= quantityToBeRemoved;
+        localStorage.setItem('quantity', String(quantity));
+        showQuantity();
+        displayQuantity(quantity);
+      }
+    }
+
+    function showQuantity()
+      {
+        console.log(`Quantity is ${quantity}.`);
+        displayQuantity(quantity);
+      }
+
+      function resetQuantity()
+      {
+        quantity = 0;
+        localStorage.setItem('quantity', String(quantity));
+        quantityElement.innerHTML = `cart quantity is ${quantity}`;
+        console.log('Quantity is reseted to 0 !');
+      }
+
+      function displayQuantity(quantity)
+      {
+        quantityElement.innerHTML = `cart quantity is ${quantity}`;
+      }
+      
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>exercise 3 DOM</title>
+</head>
+
+<body>
+
+  <input type="text" placeholder="" onkeydown="display(event);">
+  <p></p>
+
+  <script>
+    function display(event)
+    {
+      console.log(event.key);
+      const pElement = document.querySelector('p');
+
+      if(event.key === 'Backspace')
+      {
+        let pElementStr = String(pElement.innerHTML);
+        pElement.innerHTML = pElementStr.substring(0,pElementStr.length-1);
+      }
+      else if(event.key === 'Enter')
+      {
+        pElement.innerHTML = '';
+      }
+      else 
+      {
+        pElement.innerHTML = pElement.innerHTML + event.key;
+      }
+    }
+  </script>
+
+</body>
+
+</html>

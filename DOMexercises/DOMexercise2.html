@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>exercise 2 DOM</title>
+  </head> 
+
+  <body>
+
+    <input type="text" placeholder="enter your name" onkeydown="displayButtonHandling(event);">
+    <button onclick="displayName();">Submit</button>
+    <p></p>
+
+    <script>
+
+      const inputElement = document.querySelector('input');
+      const paragraphElement = document.querySelector('p');
+      let name = localStorage.getItem('name') || '(undefined)';
+
+      paragraphElement.innerHTML = `Your last name was ${name}`;
+
+      function displayName()
+      {
+        name = inputElement.value;
+        localStorage.setItem('name', name);
+
+        paragraphElement.innerHTML = `Your name is ${name}`;
+
+      }
+
+      function displayButtonHandling(event)
+      {
+        if(event.key === "Enter")
+        {
+          displayName();
+        }
+      }
+
+    </script>
+
+  </body>
+</html>

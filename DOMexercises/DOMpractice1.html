@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <title>DOM practice</title>
+
+    <style>
+      body
+      {
+        font-family: Arial;
+      }
+
+      .subscribe-button
+      {
+        padding-top: 10px;
+        padding-right: 15px;
+        padding-bottom: 10px;
+        padding-left: 15px;
+        font-weight: bold;
+        background-color: black;
+        color: white;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+      }
+
+      .subscribed-button
+      {
+        background-color: rgb(240, 240, 240);
+        color: black;
+      }
+
+    </style>
+
+  </head>
+
+  <body>
+    
+    <p>YouTube subscribe button</p>
+
+    <button class="subscribe-button" onclick="changeSubscribeButtonElement();">Subscribe</button>
+
+    <script>
+
+      const firstButtonElement = document.querySelector('.subscribe-button');
+
+      let clicked = localStorage.getItem('clicked') === 'true';
+      let buttonText = localStorage.getItem('buttonText') || '';
+
+      firstButtonElement.innerHTML = buttonText;
+
+      function changeSubscribeButtonElement()
+      {
+        clicked = !clicked;
+
+        if(clicked)
+        {
+          buttonText = 'Subscribed';
+          firstButtonElement.classList.add('subscribed-button');
+        }
+        else
+        {
+          buttonText = 'Subscribe';
+          firstButtonElement.classList.remove('subscribed-button');
+        }
+
+        firstButtonElement.innerHTML = buttonText;
+
+        localStorage.setItem('buttonText', buttonText);
+        localStorage.setItem('clicked', clicked.toString());
+      }
+
+
+
+
+    </script>
+
+  </body>
+</html>

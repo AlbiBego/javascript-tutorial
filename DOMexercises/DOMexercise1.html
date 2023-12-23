@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>exercise 1 DOM</title>
+  </head>
+
+  <body>
+
+    <button onclick="displayPlayerMove('heads');">heads</button>
+    <button onclick="displayPlayerMove('tails');">tails</button>
+    <p></p>
+
+    <script>
+
+      let playerMove = localStorage.getItem('move') || 'no move';
+
+      const playerMoveElement = document.querySelector('p');
+
+      playerMoveElement.innerHTML = `You last selected ${playerMove}`;
+
+      function displayPlayerMove(playerMove)
+      {
+        playerMoveElement.innerHTML = `You selected ${playerMove}`;
+
+        localStorage.setItem('move', playerMove);
+      }
+
+    </script>
+  </body>
+</html>

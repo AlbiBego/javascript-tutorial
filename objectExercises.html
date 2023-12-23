@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>ushtrime me objektet</title>
+  </head>
+
+  <body>
+    <script>
+      const product1 = 
+      {
+        name: 'product1',
+        price: 10,
+        'delivery-time': '35 minutes'
+      };
+
+      const product2 = 
+      {
+        name: 'product2',
+        price: 200,
+        'delivery-time': '25 minutes'
+      };
+
+      console.log(product1);
+
+      comparePrice(2,product1,product2);
+
+      let a = 0;
+
+      function comparePrice(a = 1,p1,p2)
+      {
+        (p1['price'] > p2['price']) ? console.log('product 2 costs less') : console.log('product 1 costs less');
+
+        console.log(a);
+
+        return;
+      }
+
+
+    </script>
+  </body>
+</html>

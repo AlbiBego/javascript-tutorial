@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+
+    <title>Exercise with buttons that turn on and off one at a time</title>
+
+    <style>
+
+      .button-on
+      {
+        background-color: black;
+        color: white;
+      }
+
+    </style>
+
+  </head>
+
+  <body>
+    
+    <button class="js-first-button button" onclick="toogleButton('first');">first button</button>
+    <button class="js-second-button button" onclick="toogleButton('second');">second button</button>
+    <button class="js-third-button button" onclick="toogleButton('third');">third button</button>
+
+    <script>
+
+      const firstButtonElement = document.querySelector('.js-first-button');
+      const secondButtonElement = document.querySelector('.js-second-button');
+      const thirdButtonElement = document.querySelector('.js-third-button');
+      let firstButtonOn = localStorage.getItem('firstButton') === 'true';
+      let secondButtonOn = localStorage.getItem('secondButton') === 'true';
+      let thirdButtonOn = localStorage.getItem('thirdButton') === 'true';
+      let lastButtonPressed = localStorage.getItem('lastButtonPressed') || 'none';
+
+      toogleButton(lastButtonPressed);
+      toogleButton(lastButtonPressed);
+
+      function toogleButton(button)
+      {
+        if(button === 'first')
+        {
+          firstButtonOn = !firstButtonOn;
+          secondButtonOn = false;
+          thirdButtonOn = false;
+
+          if(firstButtonOn)
+          {
+            firstButtonElement.classList.add('button-on');
+          }
+          else
+          {
+            firstButtonElement.classList.remove('button-on');
+          }
+          
+          if(secondButtonElement.classList.contains('button-on'))
+          {
+            secondButtonElement.classList.remove('button-on');
+          }
+
+          if(thirdButtonElement.classList.contains('button-on'))
+          {
+            thirdButtonElement.classList.remove('button-on');
+          }
+        }
+        else if(button === 'second')
+        {
+          secondButtonOn = !secondButtonOn;
+          firstButtonOn = false;
+          thirdButtonOn = false;
+
+          if(secondButtonOn)
+          {
+            secondButtonElement.classList.add('button-on');
+          }
+          else
+          {
+            secondButtonElement.classList.remove('button-on');
+          }
+          
+          if(firstButtonElement.classList.contains('button-on'))
+          {
+            firstButtonElement.classList.remove('button-on');
+          }
+
+          if(thirdButtonElement.classList.contains('button-on'))
+          {
+            thirdButtonElement.classList.remove('button-on');
+          }
+        }
+        else if(button === 'third')
+        {
+          thirdButtonOn = !thirdButtonOn;
+          firstButtonOn = false;
+          secondButtonOn = false;
+
+          if(thirdButtonOn)
+          {
+            thirdButtonElement.classList.add('button-on');
+          }
+          else
+          {
+            thirdButtonElement.classList.remove('button-on');
+          }
+
+          if(firstButtonElement.classList.contains('button-on'))
+          {
+            firstButtonElement.classList.remove('button-on');
+          }
+          
+          if(secondButtonElement.classList.contains('button-on'))
+          {
+            secondButtonElement.classList.remove('button-on');
+          }
+        }
+        
+        localStorage.setItem('firstButton', String(firstButtonOn));
+        localStorage.setItem('secondButton', String(secondButtonOn));
+        localStorage.setItem('thirdButton', String(thirdButtonOn));
+        localStorage.setItem('lastButtonPressed', button);
+      }
+
+    </script>
+
+  </body>
+
+</html>
