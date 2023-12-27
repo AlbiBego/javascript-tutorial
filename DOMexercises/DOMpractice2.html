@@ -21,6 +21,11 @@
         cursor: pointer;
       }
 
+      .error
+      {
+        color: red;
+      }
+
     </style>
   </head>
 
@@ -53,14 +58,27 @@
         let finalPrice = Number(inputElement.value);
         const shippingFee = 10;
 
-        let temp = Math.pow(10,15);
-
-        if(finalPrice <= 40)
+        if(finalPrice < 0)
         {
-          finalPrice = (finalPrice * temp + shippingFee * temp) / temp;
+          result.innerHTML = 'Error: cost cannot be less than $0';
+          result.classList.add('error');
         }
+        else
+        {
+          if(result.classList.contains('error'))
+          {
+            result.classList.remove('error');
+          }
+          
+          let temp = Math.pow(10,15);
 
-        result.innerHTML = `$${finalPrice}`;
+          if(finalPrice <= 40)
+          {
+            finalPrice = (finalPrice * temp + shippingFee * temp) / temp; 
+          }
+
+          result.innerHTML = `$${finalPrice}`;
+        }
 
       }
 

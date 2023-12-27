@@ -1,0 +1,51 @@
+body
+{
+  background-color: rgb(47, 45, 45);
+  font-family: Arial;
+}
+
+div
+{
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.calculator-display
+{
+  display: block;
+  width: 270px;
+  height: 56px;
+  margin-bottom: -15px;
+  padding-left: 10px;
+  background-color: black;
+  color: white;
+  font-size: 20px;
+  line-height: 56px;
+}
+
+.calculator-keys
+{
+  display: inline-grid;
+  grid-template-columns: 70px 70px 70px 70px;
+  background-color: black;
+}
+
+.calculator-key
+{
+  text-align: center;
+}
+
+.calculator-key-button
+{
+  width: 40px;
+  height: 40px;
+  background-color: gray;
+  color: white;
+  border: none;
+  border-radius: 50%;
+}
+
+.operator
+{
+  background-color: rgb(255, 179, 0);
+}

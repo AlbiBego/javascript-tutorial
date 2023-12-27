@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>word counter in an array</title>
+</head>
+
+<body>
+
+  <script>
+    const array = ['apple', 'apple', 'orange', 'apple', 'mango', 'orange'];
+
+    wordCounter(array);
+
+    function wordCounter(array) {
+      let words = {};
+
+      for (let i = 0; i < array.length; i++) 
+      {
+        let word = array[i];
+
+        // If the word is not in the 'words' object, initialize count to 1
+        if (!words[word]) {
+          words[word] = 1;
+        } else {
+          // If the word is already in the 'words' object, increment the count
+          words[word]++;
+        }
+      }
+
+      console.log(words);
+
+      return words;
+    }
+  </script>
+
+</body>
+
+</html>

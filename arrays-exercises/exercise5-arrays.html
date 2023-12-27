@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>remove the last two words that are given from the array</title>
+</head>
+
+<body>
+  <script>
+
+    const array = ['johan', 'shin', 'kaneki', 'shin', 'shin', 'kaneki'];
+
+    removeLast2(array, 'kaneki');
+
+    console.log(array);
+
+    function removeLast2(arrayPar, word)
+    {
+      const indexesOfWordsToBeRemoved = [];
+      let temp = 0;
+
+      //reverse(arrayPar);
+
+      for(let i = arrayPar.length - 1; i >= 0; i--)
+      {
+        if(temp === 2)
+        {
+          break;
+        }
+
+        if(arrayPar[i] === word)
+        {
+          indexesOfWordsToBeRemoved[temp] = i;
+          temp++;
+        }
+      }
+
+      for(let i = 0; i < indexesOfWordsToBeRemoved.length; i++)
+      {
+        arrayPar.splice(indexesOfWordsToBeRemoved[i], 1);
+      }
+
+      
+    }
+
+    function reverse(arrayPar)
+    {
+      const copy = arrayPar.slice();
+      const length = array.length;
+
+      for(let i = 0; i < length; i++)
+      {
+        arrayPar[i] = copy[length-1-i];
+      }
+    }
+
+
+
+
+  </script>
+</body>
+
+</html>

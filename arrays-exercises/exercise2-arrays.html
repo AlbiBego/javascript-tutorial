@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>min max object</title>
+  </head>
+
+  <body>
+    <script>
+
+      const array = [3, 5, 1, 8, 9, -4, 3];
+
+      console.log(minMax(array));
+
+      function minMax(array)
+      {
+        let solution = 
+        {
+          min: 0,
+          max: 0
+        };
+
+        if(array.length === 0)
+        {
+          solution.min = null;
+          solution.max = null;
+        }
+        else
+        {
+          let min = array[0];
+          let max = array[0];
+
+          for(let i = 0; i < array.length; i++)
+          {
+            if(array[i] > max)
+            {
+              max = array[i];
+            }
+
+            if(array[i] < min)
+            {
+              min = array[i];
+            }
+          }
+
+          solution.min = min;
+          solution.max = max;
+        }
+
+        return solution;
+      }
+
+    </script>
+  </body>
+</html>

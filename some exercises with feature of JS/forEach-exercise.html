@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>exercise with a function that returns how many positive numbers are in an array</title>
+</head>
+
+<body>
+
+  <script>
+
+    function positive(array)
+    {
+      let temp = 0;
+
+      array.forEach(
+      value =>
+      {
+        if(value >= 0)
+        {
+          temp++;
+        }
+      }
+      );
+
+      return temp;
+    }
+
+    console.log(positive([1,4,-4,2,-3]));
+
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>map fileter methods exercises</title>
+</head>
+
+<body>
+
+  <script>
+
+    function op(array, num)
+    {
+      return array.map(value => value + num);
+    }
+
+    console.log(op([2, 3, 4], 2));
+
+    //removing only the first two eggs of an array
+
+    function removeEggs(array, food)
+    {
+      let count = 0;
+
+      return array.filter(value =>
+      { 
+        if(value === food && count < 2)
+        {
+          count ++;
+          return false;
+        }
+
+        return true;
+      });
+    }
+
+    console.log(removeEggs(['a', 'b', 'egg', 'c', 'egg', 'egg'], 'egg'));
+
+  </script>
+
+</body>
+
+</html>

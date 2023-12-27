@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>make a unique array</title>
+</head>
+
+<body>
+
+<script>
+
+const array = ['johan', 'shin', 'kaneki', 'shin', 'shin', 'kaneki'];
+
+unique(array);
+
+console.log(array);
+
+function unique(arrayPar)
+{
+  let i = 0;
+
+  while(arrayPar[i] !== undefined)
+  {
+    remove(arrayPar, arrayPar[i]);
+
+    i++;
+  }
+}
+
+function remove(arrayPar, word)
+{
+  const indexesOfWordsToBeRemoved = [];
+
+  for(let i = 0; i < arrayPar.length; i++)
+  {
+    if(arrayPar[i] === word)
+    {
+      indexesOfWordsToBeRemoved.push(i);
+    }
+  }
+
+  for(let i = 1; i < indexesOfWordsToBeRemoved.length; i++)
+  {
+    arrayPar.splice(indexesOfWordsToBeRemoved[i] - i + 1, 1);
+  }
+}
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>App</title>
+</head>
+
+<body>
+
+  <button class="js-add-button">add</button>
+  <button class="js-remove-button">remove</button>
+
+  <script>
+
+    let intervalId;
+    let messages = 3;
+    let temp = false;
+
+    document.querySelector('.js-add-button').addEventListener('click', () => {solution(1);});
+    document.querySelector('.js-remove-button').addEventListener('click', () => {solution(-1);});
+
+    solution(0);
+
+    function solution(par)
+    {
+      if(par === 1)
+      {
+        messages++;
+      }
+      else if(par === -1)
+      {
+        messages--;
+      }
+
+      if(messages > 0)
+      {
+        clearInterval(intervalId);
+        
+        intervalId = setInterval(
+        () =>
+        {
+          temp = !temp;
+
+          if(temp)
+          {
+            document.title = `(${messages})Messages`;
+          }
+          else
+          {
+            document.title = 'App';
+          }
+        }, 1000);
+      }
+      else if(messages === 0)
+      {
+        clearInterval(intervalId);
+
+        document.title = 'App';
+      }
+      else
+      {
+        messages++;
+      }
+    }
+
+  </script>
+
+</body>
+
+</html>

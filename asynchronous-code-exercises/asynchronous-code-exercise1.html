@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>a button that after 1 s of being clicked changes</title>
+  </head>
+
+  <body>
+
+    <button class="js-start-button">Start</button><br><br>
+    
+    <button class="add-button">add</button>
+    <p class="text"></p>
+
+    <script>
+      let timeoutId;
+
+      document.querySelector('.js-start-button').addEventListener('click', start);
+      document.querySelector('.add-button').addEventListener('click', add);
+
+      function start()
+      {
+        setTimeout(
+          function ()
+          {
+            document.querySelector('.js-start-button').innerHTML = 'Finished';
+          }, 1000
+        );
+      }
+
+      function add()
+      {
+        clearTimeout(timeoutId);
+
+        document.querySelector('.text').innerHTML = 'added';
+
+        timeoutId = setTimeout(
+          () =>
+          {
+            document.querySelector('.text').innerHTML = '';         
+          }, 2000
+        );
+      }
+    </script>
+
+  </body>
+</html>

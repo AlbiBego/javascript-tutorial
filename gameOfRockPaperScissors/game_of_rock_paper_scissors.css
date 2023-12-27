@@ -5,6 +5,11 @@ body
   color: white;
 }
 
+div
+{
+  display: inline-block;
+}
+
 .title,
 .result
 {
@@ -36,8 +41,15 @@ body
   object-fit: fill;
 }
 
-.reset-score-button
+.reset-score-button,
+.autoplay-button
 {
+  margin-right: 20px;
   padding: 8px 15px;
   cursor: pointer;
+}
+
+.js-reset-score-query-paragraph
+{
+  display: inline-block;
 }

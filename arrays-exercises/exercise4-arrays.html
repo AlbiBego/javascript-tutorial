@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>a function that removes a certain word from an array</title>
+  </head>
+
+  <body>
+    <script>
+
+      const array = ['johan', 'shin', 'kaneki', 'shin'];
+
+      removeWord2(array, 'shin');
+
+      console.log(array);
+
+      function removeWord(array, word)
+      {
+        let indexesOfWordsToBeRemoved = [];
+
+        for(let i = 0; i < array.length; i++)
+        {
+          if(array[i] === word)
+          {
+            indexesOfWordsToBeRemoved.push(i);
+          }
+        }
+
+        console.log(indexesOfWordsToBeRemoved);
+
+        for(let i = 0; i < indexesOfWordsToBeRemoved.length; i++)
+        {
+          array.splice(indexesOfWordsToBeRemoved[i] - i, 1);
+        }
+      }
+
+      function removeWord2(arrayPar, word)
+      {
+        let copy = [];
+
+        for(let i = 0; i < arrayPar.length; i++)
+        {
+          if(arrayPar[i] !== word)
+          {
+            copy.push(arrayPar[i]);
+          }
+        }
+
+        console.log(copy);
+
+        arrayPar = copy;
+
+        console.log(arrayPar);
+      }
+
+    </script>
+  </body>
+</html>

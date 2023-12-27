@@ -11,13 +11,15 @@
     
     <p class="title">Rock Paper Scissors</p>
 
-    <button class="move-button" onclick="playGame('rock');">
+    <button class="js-rock-button move-button">
       <img class="move-icon" src="rockPaperScissorsGameResources/rock.png">
     </button>
-    <button class="move-button" onclick="playGame('paper');">
+
+    <button class="js-paper-button move-button">
       <img class="move-icon" src="rockPaperScissorsGameResources/paper.png">
     </button>
-    <button class="move-button" onclick="playGame('scissors');">
+
+    <button class="js-scissors-button move-button">
       <img class="move-icon" src="rockPaperScissorsGameResources/scissors.png">
     </button>
 
@@ -25,7 +27,11 @@
     <p class="js-moves moves"></p>
     <p class="js-score score"></p>
     
-    <button class="reset-score-button" onclick="resetScore();">Reset score</button>
+    <div class="js-reset-score-query">
+      <p class="js-reset-score-query-paragraph"></p>
+      <button class="js-reset-score-button reset-score-button">Reset score</button>
+    </div>
+    <button class="js-autoplay-button autoplay-button">Auto Play</button>
 
     <script src="game_of_rock_paper_scissors.js"></script>
 
