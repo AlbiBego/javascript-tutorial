@@ -1,0 +1,116 @@
+*
+{
+  box-sizing: border-box;
+}
+
+body
+{
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  /* background-color: black;  */
+}
+
+/* the div that holds everthing in the project */
+
+#stopwatchDiv
+{
+  display: inline-flex;
+  flex-direction: column;
+  text-align: center;
+  flex-wrap: wrap;
+  align-content: space-around; 
+  justify-content: space-around;  
+  align-items: center;   
+  border: 2px solid black;
+  min-height: 550px;
+  min-width: 360px;
+}
+
+/* 3 main flex items css (menu, content, control button) */
+
+#stopwatchDiv > div
+{
+  border: 2px solid black;
+  /* the margin and height is specific for each flex item */
+  min-width: 345px;
+  padding: 4px;
+  display: flex;
+  /* the flex direction and main-axis alignment is specific for each flex item */
+  align-items: center;
+}
+
+#stopwatchMenu
+{
+  min-height: 40px;
+  margin: 5px 2px;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+#stopwatchContent
+{
+  flex: 1;
+  margin: 20px 2px;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#stopwatchControls
+{
+  min-height: 40px;
+  margin: 20px 2px;
+  flex-direction: row; 
+  justify-content: space-around;
+}
+
+/* d */
+
+.stopwatchMenuIcon
+{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  min-height: 30px;
+}
+
+.stopwatchMenuIcon a
+{
+  max-width: 100%;
+  max-height: 100%;
+  cursor: pointer;
+}
+
+.stopwatchMenuIcon img
+{
+  max-width: 100%;
+  max-height: 100%;
+  background-color: transparent;
+}
+
+/* d */
+
+.stopwatch-time-field
+{
+  border: 2px solid black;
+  min-width: 300px;
+  min-height: 60px;
+  text-align: center;
+  line-height: 60px;
+  margin-bottom: 16px; 
+}
+
+.stopwatch-laps
+{
+  border: 2px solid black;
+  min-width: 300px;
+}
+
+.stopwatch-laps-rendered
+{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  border: 1px solid red;
+}
+
+
