@@ -1,24 +1,25 @@
-const buttonsElement = document.querySelector('#stopwatchControls');
+const buttonsElement = document.querySelector('#stopwatchButtons');
 const timeFieldElement = document.querySelector('.js-stopwatch-time-field');
 const lapsElement = document.querySelector('.js-stopwatch-laps');
+const stopwatchContentElement = document.querySelector('#stopwatchContent');
 
 let setIntervalId = 0;
 let lapStartAccess = false;
 let restartAccess = false;
 let pauseAccess = false;
 
-let previousTime =
+let previousTime = JSON.parse(localStorage.getItem('previous-time')) ||
 {
 seconds: 0,
 minutes: 0,
 hours: 0
 };
 
-let time =
+let time = JSON.parse(localStorage.getItem('time')) ||
 {
-seconds: 50,
-minutes: 59,
-hours: 23
+seconds: 0,
+minutes: 0,
+hours: 0
 };
 
 renderClock(time);
@@ -72,8 +73,13 @@ function startStopwatch()
 
   buttonsElement.innerHTML = 
   `
-  <button class="js-laps-button laps-button">flag img</button>
-  <button class="js-pause-button pause-button">pause img</button>
+  <button class="js-laps-button laps-button">
+    <img class="lap-button" src="project resources/lap-icon.png">
+  </button>
+
+  <button class="js-pause-button pause-button">
+    <img class="pause-button" src="project resources/pause-icon.png">
+  </button>
   `;
 
   document.querySelector('.js-laps-button').addEventListener('click', () => addLap(time));
@@ -102,8 +108,6 @@ function updateClock()
   }
 
   renderClock(time);
-
-  console.log(time);
 }
 
 function renderClock(time)
@@ -136,6 +140,8 @@ function renderClock(time)
   {
     timeFieldElement.innerHTML += '' + time.seconds; 
   }
+
+  localStorage.setItem('time', JSON.stringify(time))
 }
 
 function pauseStopwatch()
@@ -147,8 +153,13 @@ function pauseStopwatch()
 
  buttonsElement.innerHTML = 
  `
- <button class="js-stop-button stop-button">stop img</button>
- <button class="js-start-button play-button">play img</button>
+ <button class="js-stop-button stop-button">
+  <img src="project resources/stop-icon.png">
+ </button>
+
+ <button class="js-start-button play-button">
+  <img class="play-button" src="project resources/play-icon.png">
+ </button>
  `;
 
  document.querySelector('.js-stop-button').addEventListener('click', restartStopwatch);
@@ -157,18 +168,25 @@ function pauseStopwatch()
 
 function addLap(time)
 { 
+  stopwatchContentElement.style.justifyContent = 'flex-start';
+  timeFieldElement.style.marginBottom = '20px';  
+  timeFieldElement.style.fontSize = '30px';  
+
   let lapTime = timeSubtraction(time, previousTime);
 
   let timeString = turnTimeString(time);
 
   let lapTimeString = turnTimeString(lapTime);
 
-  renderLapsHTML(timeString, lapTimeString); 
-
+  renderLapsHTML(timeString, lapTimeString);
 }
 
 function restartStopwatch()
 {
+  timeFieldElement.style.fontSize = '40px';
+
+  lapNumber = 1;
+  HTML = '';
   lapStartAccess = false;
   pauseAccess = false;
 
@@ -176,12 +194,26 @@ function restartStopwatch()
   time.minutes = 0;
   time.hours = 0;
 
+  previousTime.seconds = 0;
+  previousTime.minutes = 0;
+  previousTime.hours = 0;
+
+  localStorage.setItem('time', JSON.stringify(time))
+  localStorage.setItem('previous-time', JSON.stringify(previousTime));
+
   renderClock(time);
 
   buttonsElement.innerHTML = 
  `
- <button class="js-start-button play-button">play img</button>
+ <button class="js-start-button play-button">
+  <img class="play-button" src="project resources/play-icon.png">
+ </button>
  `;
+
+ lapsElement.innerHTML = '';
+
+ stopwatchContentElement.style.justifyContent = 'center';
+ timeFieldElement.style.marginBottom = '60px';
 
  document.querySelector('.js-start-button').addEventListener('click', startStopwatch);
 }
@@ -224,6 +256,8 @@ function timeSubtraction(time, previousTime)
   previousTime.minutes = time.minutes;
   previousTime.hours = time.hours;
 
+  localStorage.setItem('previous-time', JSON.stringify(previousTime));
+
   return result;
 }
 
@@ -233,9 +267,9 @@ let lapNumber = 1;
 function renderLapsHTML(time, lapTime)
 {
   HTML += `
-  <div>${lapNumber}</div>
-  <div>${lapTime}</div>
-  <div>${time}</div>
+  <div class="lap-number">${lapNumber}</div>
+  <div class="lap-time">${lapTime}</div>
+  <div class="lap-finish-time">${time}</div>
   `;
 
   lapsElement.classList.add('stopwatch-laps-rendered');
